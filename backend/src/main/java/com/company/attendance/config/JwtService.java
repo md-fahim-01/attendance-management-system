@@ -23,6 +23,7 @@ public class JwtService {
     public String generateToken(String username) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMs);
+
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(now)
@@ -37,7 +38,8 @@ public class JwtService {
 
     public boolean isTokenValid(String token, String username) {
         String extractedUsername = extractUsername(token);
-        return extractedUsername.equals(username) && !extractAllClaims(token).getExpiration().before(new Date());
+        return extractedUsername.equals(username)
+                && !extractAllClaims(token).getExpiration().before(new Date());
     }
 
     private Claims extractAllClaims(String token) {
@@ -48,8 +50,9 @@ public class JwtService {
                 .getPayload();
     }
 
+    // ✅ FIXED (no double encoding, clean key handling)
     private SecretKey getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(java.util.Base64.getEncoder().encodeToString(secret.getBytes()));
+        byte[] keyBytes = secret.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
