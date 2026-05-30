@@ -3,6 +3,7 @@ package com.company.attendance.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -34,14 +35,16 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
 
-                        // ✅ PUBLIC ROUTES (IMPORTANT FIX)
+                        // ✅ PUBLIC ROUTES (IMPORTANT)
                         .requestMatchers(
                                 "/",
                                 "/error",
-                                "/api/auth/**"
+                                "/api/auth/**",
+                                "/api/auth/login",
+                                "/api/auth/register"
                         ).permitAll()
 
-                        // OPTIONS for CORS preflight
+                        // OPTIONS for CORS
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // 🔒 EVERYTHING ELSE PROTECTED
@@ -56,7 +59,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOriginPatterns(List.of("*")); // frontend allow
+        config.setAllowedOriginPatterns(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(false);
