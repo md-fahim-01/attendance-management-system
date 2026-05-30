@@ -3,6 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+
+  "engines": {
+    "node": "20.x"
+  },
+
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
     "build": "vite build",
@@ -14,5 +19,9 @@
   },
   "devDependencies": {
     "vite": "^5.4.10"
-  }
+  },
+  "engines": {
+  "node": "20.x"
+}
+  
 }
