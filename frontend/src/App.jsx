@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8080/api').replace(/\/$/, '');
+// const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8080/api').replace(/\/$/, '');
+const API_BASE = (import.meta.env.VITE_API_URL || 'https://attendance-management-system-1-f58u.onrender.com/api').replace(/\/$/, '')
 const COMPANY_NAME = 'NARNIKA INDUSTRIES';
 const COMPANY_TAGLINE = 'Attendance • Payroll • Reporting';
 const menuItems = [
