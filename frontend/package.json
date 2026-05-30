@@ -9,19 +9,17 @@
   },
 
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4173"
+    "dev": "vite",
+    "build": "npx vite build",
+    "preview": "vite preview"
   },
+
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
+
   "devDependencies": {
     "vite": "^5.4.10"
-  },
-  "engines": {
-  "node": "20.x"
-}
-  
+  }
 }
